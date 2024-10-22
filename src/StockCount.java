@@ -19,9 +19,9 @@ public class StockCount {
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             String line = value.toString();
-            String[] columns = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // Split on commas unless they are in quotes
+            String[] columns = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); 
             if (columns.length > 0) {
-                String lastColumn = columns[columns.length - 1].replaceAll("\"", "").trim(); // Remove quotes and trim whitespace
+                String lastColumn = columns[columns.length - 1].replaceAll("\"", "").trim(); 
                 stockCode.set(lastColumn);
                 context.write(stockCode, one);
             }
@@ -36,15 +36,15 @@ public class StockCount {
             for (IntWritable val : values) {
                 sum += val.get();
             }
-            countMap.put(key.toString(), sum); // Store the sum for each stock code
+            countMap.put(key.toString(), sum); 
         }
 
         protected void cleanup(Context context) throws IOException, InterruptedException {
-            // Sort the map by values in descending order
+
             List<Map.Entry<String, Integer>> list = new ArrayList<>(countMap.entrySet());
             list.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
 
-            // Output with rank
+
             int rank = 1;
             for (Map.Entry<String, Integer> entry : list) {
                 context.write(new Text(rank + ": " + entry.getKey()), new IntWritable(entry.getValue()));
