@@ -27,6 +27,7 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src</sourceDirectory> <!-- 指向 src 目录 -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -44,7 +45,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.StockCount</mainClass> <!-- 更新为你的主类的全名 -->
+                            <mainClass>StockCount</mainClass> <!-- 更新主类位置 -->
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -61,7 +62,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
-
