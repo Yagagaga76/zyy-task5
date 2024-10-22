@@ -33,6 +33,8 @@
       - **计数存储**：在 `reduce()` 方法中，将每个单词及其计数存入 `countMap`（一个 `TreeMap`），`TreeMap` 自动按照字母顺序存储键。
       - **cleanup() 方法**：
         -  `reduce()` 操作完成后，通过 `cleanup()` 方法对存储在 `countMap` 中的单词按计数进行降序排序。输出排名前100个最常用的单词及其出现次数。
+<img width="633" alt="41029b307a9d888198da3c1332dd5a6" src="https://github.com/user-attachments/assets/0e22d149-1351-4b28-af71-ee3591d5f1a4">
+<img width="637" alt="70e4d2c3b5a9b26cec868e91b3feaa3" src="https://github.com/user-attachments/assets/5c79827e-4aa2-41d5-bd76-e5152a6dd7ce">
 
 
 （这里有几次跑出来结果不对 所以能看到运行但是重新跑了）
